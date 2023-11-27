@@ -1,0 +1,82 @@
+﻿@model Gatos_E_Sopas.Models.Gatos
+
+@{
+    ViewBag.Title = "compras";
+}
+
+<h2>compras</h2>
+
+<div>
+    <h4>Gatos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Raca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Raca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Idade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Preco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Preco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cor)
+        </dd>
+
+        <dt>
+            Imagem Gato
+        </dt>
+
+        <dd>
+            <img src="~/Content/Imagens/@Model.imagem_path" style="width:150px; height:200px" />
+        </dd>
+
+    </dl>
+</div>
+
+<form method="post">
+    <input type="submit" value="Comprar" class="btn btn-primary" />
+</form>
+@{
+    if (ViewBag.mensagem != null)
+    {
+        <script> alert(@ViewBag.mensagem)</script>
+    }
+}
+
+<h2> @ViewBag.mensagem</h2>

@@ -1,0 +1,1 @@
+﻿Select *, Gatos.Nome from compras, Gatos where gatos.ID = compras.gatosID and UtilizadorID ='1004'

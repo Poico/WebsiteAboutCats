@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Gatos_E_Sopas.Models.Gatos>
+
+@{
+    ViewBag.Title = "ListaGatos";
+}
+
+<h2>ListaGatos</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Raca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Idade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cor)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Raca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cor)
+            </td>
+            <td>
+                @{
+                    if (Session["perfil"].ToString() == "True")
+                    {
+                        @Html.ActionLink("Editar | ", "Editar", new { id = item.ID });
+                        
+                        @Html.ActionLink("Apagar | ", "Apagar", new { id = item.ID });
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Compra | ", "compras", new { id = item.ID });
+                    }
+                    @Html.ActionLink("Detalhes", "detalhes", new { id = item.ID });
+                }
+
+            </td>
+        </tr>
+    }
+    @{
+        if (ViewBag.npagina != 0)
+        {
+            @Html.ActionLink("Pagina anterior", "listagatos", new { id = ViewBag.npagina - 1 })
+        }
+    }
+
+    @{
+        if (ViewBag.npagina != ViewBag.ntotalpaginas)
+        {
+            @Html.ActionLink("Pagina seguinte", "listagatos", new { id = ViewBag.npagina + 1 })
+        }
+    }
+</table>
+
+

@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Gatos&Sopas", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                    <li>@Html.ActionLink("Gatos", "ListaGatos/0", "Gatos")</li>
+                    <li>@Html.ActionLink("Pesquisar Nome", "Pesquisar_Nome", "Gatos")</li>
+                    <li>@Html.ActionLink("Pesquisar Raça", "Pesquisar_Raca", "Gatos")</li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    @{
+                        if (Session["Nome"] == null)
+                        {
+                            <li>@Html.ActionLink("Login", "Login", "utilizadores") </li>
+                            <li>@Html.ActionLink("Registar", "Registo", "utilizadores") </li>
+                        }
+                        else
+                        {
+                            <li class="dropdown">
+                                <a href="#" style="font-size:18px" class="dropdown-toggle" data-toggle="dropdown">@Session["Nome"]</a>
+                                <ul class="dropdown-menu">
+                                    @{ if (Session["perfil"].ToString() == "True")
+                                        {
+                                            <li>@Html.ActionLink("Inserir", "InserirGato", "Gatos")</li>
+                                        }
+                                    }
+                                    <li>@Html.ActionLink("Sair", "Logout", "utilizadores")</li>
+                                    <li>@Html.ActionLink("Compras", "lista_compras", "gatos")</li>
+                                </ul>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
